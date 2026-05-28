@@ -26,8 +26,10 @@ export function sortQueue(patients) {
     if (aEmergency && !bEmergency) return -1;
     if (!aEmergency && bEmergency) return 1;
 
-    const aTime = toDate(a.createdAt)?.getTime() || 0;
-    const bTime = toDate(b.createdAt)?.getTime() || 0;
+    const aDate = toDate(a.createdAt);
+    const bDate = toDate(b.createdAt);
+    const aTime = aDate ? aDate.getTime() : 0;
+    const bTime = bDate ? bDate.getTime() : 0;
     return aTime - bTime;
   });
 }
@@ -35,8 +37,8 @@ export function sortQueue(patients) {
 export function filterPatients(patients, { search = "", status = null, todayOnly = false } = {}) {
   let result = [...patients];
 
-  if todayOnly) {
-    result = result.filter(isToday);
+  if (todayOnly) {
+    result = result.filter((p) => isToday(p));
   }
 
   if (status) {
@@ -57,7 +59,7 @@ export function filterPatients(patients, { search = "", status = null, todayOnly
 }
 
 export function getQueueStats(patients, todayOnly = true) {
-  const list = todayOnly ? patients.filter(isToday) : patients;
+  const list = todayOnly ? patients.filter((p) => isToday(p)) : patients;
 
   return {
     total: list.length,
