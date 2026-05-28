@@ -7,7 +7,7 @@ import {
   getWaitingPatients,
   toDate,
 } from "../utils/queueHelpers";
-import { PATIENT_STATUS, PRIORITY_TYPES } from "../utils/constants";
+import { PRIORITY_TYPES } from "../utils/constants";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchBar from "./SearchBar";
 import TokenCard from "./TokenCard";

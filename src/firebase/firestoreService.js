@@ -9,7 +9,6 @@ import {
   orderBy,
   serverTimestamp,
   getDocs,
-  where,
 } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 
