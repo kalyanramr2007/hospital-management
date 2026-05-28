@@ -1,0 +1,136 @@
+.queue-display {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.queue-display__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 1.5rem;
+}
+
+.queue-section h2 {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.queue-count {
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+.queue-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.queue-section__header h2 {
+  margin-bottom: 0;
+}
+
+.patient-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.patient-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.patient-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.patient-card--emergency {
+  border-left: 4px solid #ef4444;
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, var(--bg) 20%);
+}
+
+.patient-card__token {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.patient-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.patient-card__info strong {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.patient-card__symptoms {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.patient-card__time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.patient-card__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.queue-position {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+.badge--emergency {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.queue-error {
+  text-align: center;
+  padding: 2rem;
+}
+
+@media (max-width: 900px) {
+  .queue-display__grid {
+    grid-template-columns: 1fr;
+  }
+}

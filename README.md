@@ -1,70 +1,173 @@
-# Getting Started with Create React App
+# Smart Hospital Queue & Appointment Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A production-ready hospital queue management web application built with **React.js** and **Firebase Firestore** for CSP final-year project presentations and community health center deployments.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Landing Page** — Hero section, system overview, SDG goals, about project, innovation & community impact
+- **Patient Registration** — Form validation, auto token generation, Firestore save, QR code success modal
+- **Live Queue Display** — Real-time `onSnapshot` updates, emergency highlighting, search/filter
+- **Admin Dashboard** — Login, call next patient, mark complete, clear completed, statistics
+- **Token Display Screen** — Large animated current token for waiting room TVs
+- **Dark Mode** — Theme toggle with persistence
+- **Toast Notifications** — Success/error feedback throughout the app
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React 19 (functional components + hooks)
+- JavaScript
+- Firebase Firestore
+- React Router
+- QRCode.react
+- Plain CSS (modular component styles)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Structure
 
-### `npm test`
+```
+src/
+├── assets/
+├── components/
+│   ├── AdminDashboard.js
+│   ├── DarkModeToggle.js
+│   ├── Footer.js
+│   ├── HeroSection.js
+│   ├── LoadingSpinner.js
+│   ├── Navbar.js
+│   ├── PatientForm.js
+│   ├── QueueDisplay.js
+│   ├── SearchBar.js
+│   ├── StatisticsCards.js
+│   ├── SuccessModal.js
+│   ├── Toast.js
+│   └── TokenCard.js
+├── context/
+│   ├── ThemeContext.js
+│   └── ToastContext.js
+├── firebase/
+│   ├── firebaseConfig.js    ← Your existing credentials (do not commit secrets publicly)
+│   └── firestoreService.js
+├── hooks/
+│   └── usePatients.js
+├── pages/
+│   ├── AdminPage.js
+│   ├── HomePage.js
+│   ├── QueuePage.js
+│   ├── RegisterPage.js
+│   └── TokenDisplayPage.js
+├── styles/
+│   ├── global.css
+│   └── variables.css
+└── utils/
+    ├── constants.js
+    ├── queueHelpers.js
+    ├── tokenGenerator.js
+    └── validation.js
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Firebase Setup
 
-### `npm run build`
+### 1. Firestore Database
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Open [Firebase Console](https://console.firebase.google.com/) → your project `hospital-queue-system-1b02e`
+2. Go to **Build → Firestore Database**
+3. Click **Create database** → Start in **test mode** (for development) or production mode with rules below
+4. Collection name used by the app: **`patients`**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Firestore Security Rules
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Deploy the included rules (development — open read/write):
 
-### `npm run eject`
+```bash
+firebase deploy --only firestore:rules
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For production, replace open rules with Firebase Authentication checks.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. Firestore Index
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The app queries patients ordered by `createdAt`. Firestore may prompt you to create a composite index when you first run the app — click the link in the browser console error to auto-create it.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4. Collection Schema (`patients`)
 
-## Learn More
+| Field | Type | Description |
+|-------|------|-------------|
+| patientName | string | Full name |
+| age | number | Patient age |
+| gender | string | Male / Female / Other |
+| mobile | string | 10-digit number |
+| symptoms | string | Symptom description |
+| priorityType | string | `Normal` or `Emergency` |
+| token | string | e.g. `T-20260528-001` |
+| status | string | `waiting`, `serving`, `completed` |
+| createdAt | timestamp | Server timestamp |
+| appointmentTimestamp | string | ISO date string |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Getting Started
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Install dependencies
 
-### Code Splitting
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Run development server
 
-### Analyzing the Bundle Size
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Open [http://localhost:3000](http://localhost:3000)
 
-### Making a Progressive Web App
+### Admin Login (Demo)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| Field | Value |
+|-------|-------|
+| Username | `admin` |
+| Password | `admin123` |
 
-### Advanced Configuration
+## Deployment (Firebase Hosting)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 1. Install Firebase CLI
 
-### Deployment
+```bash
+npm install -g firebase-tools
+firebase login
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 2. Build the React app
 
-### `npm run build` fails to minify
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 3. Deploy
+
+```bash
+firebase deploy
+```
+
+Or deploy hosting only:
+
+```bash
+firebase deploy --only hosting
+```
+
+Your app will be live at: `https://hospital-queue-system-1b02e.web.app`
+
+## Screenshots & Demo Tips
+
+1. **Home** — Show SDG section and project overview for presentation
+2. **Register** — Register 2–3 patients (one Emergency) to demonstrate priority
+3. **Admin** — Call next patient, show statistics updating
+4. **Token Display** — Full-screen on a second monitor for "waiting room" effect
+5. **Live Queue** — Show real-time updates when admin calls patients
+
+## SDG Alignment
+
+- **SDG 3** — Good Health and Well-Being
+- **SDG 9** — Industry, Innovation and Infrastructure
+- **SDG 16** — Peace, Justice and Strong Institutions
+
+## License
+
+Educational / CSP Project Use

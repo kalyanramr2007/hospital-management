@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { APP_NAME, NAV_LINKS } from "../utils/constants";
 import DarkModeToggle from "./DarkModeToggle";
 import "./Navbar.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
 
   const closeMenu = () => setMenuOpen(false);
 

@@ -1,0 +1,22 @@
+.page {
+  padding: 2rem 1.5rem 4rem;
+  flex: 1;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 0.35rem;
+}
+
+.page-header p {
+  color: var(--text-muted);
+}
+
+.page-content--narrow {
+  max-width: 720px;
+  margin: 0 auto;
+}

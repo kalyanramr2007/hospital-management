@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Development rules — tighten for production with Firebase Auth
+    match /patients/{patientId} {
+      allow read, write: if true;
+    }
+  }
+}
