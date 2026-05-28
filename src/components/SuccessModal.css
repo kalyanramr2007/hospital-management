@@ -1,0 +1,104 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.success-modal__icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.success-modal h2 {
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.success-modal > p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.success-modal__token {
+  background: var(--primary-light);
+  border: 2px dashed var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.success-modal__token-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.success-modal__token strong {
+  font-size: 1.75rem;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+}
+
+.success-modal__qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.success-modal__qr small {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.success-modal__details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.success-modal__details li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

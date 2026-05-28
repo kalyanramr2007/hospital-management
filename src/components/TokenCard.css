@@ -1,0 +1,85 @@
+.token-card {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.token-card--large {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.token-card--medium {
+  padding: 1.5rem;
+}
+
+.token-card--emergency {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  animation: pulseEmergency 2s ease-in-out infinite;
+}
+
+.token-card__label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.token-card__number {
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.token-card--animated .token-card__number {
+  animation: tokenPop 0.6s ease;
+}
+
+.token-card__name {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.token-card__badge {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+}
+
+@keyframes tokenPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseEmergency {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(220, 38, 38, 0);
+  }
+}
