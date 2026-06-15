@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
-    "firebase": "^12.13.0",
+    "firebase": "^12.14.0",
     "qrcode.react": "^4.2.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
@@ -21,7 +21,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && npx firebase-tools deploy",
+    "deploy:hosting": "npx firebase-tools deploy --only hosting",
+    "deploy:rules": "npx firebase-tools deploy --only firestore:rules"
   },
   "eslintConfig": {
     "extends": [

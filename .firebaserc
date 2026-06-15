@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "hospital-queue-system-1b02e"
-  }
+    "default": "hospital-queue-managemen-93f2c"
+  },
+  "targets": {},
+  "etags": {}
 }
