@@ -1,29 +1,94 @@
 # Smart Hospital Queue & Appointment Management System
 
-A production-ready hospital queue management web application built with **React.js** and **Firebase Firestore** for CSP final-year project presentations and community health center deployments.
+A production-ready Hospital Queue and Appointment Management System built using **React.js** and **Firebase Firestore**. The project is designed to streamline patient registration, token generation, queue monitoring, and appointment management for hospitals, clinics, and community health centers.
 
-## Features
+---
 
-- **Landing Page** — Hero section, system overview, SDG goals, about project, innovation & community impact
-- **Patient Registration** — Form validation, auto token generation, Firestore save, QR code success modal
-- **Live Queue Display** — Real-time `onSnapshot` updates, emergency highlighting, search/filter
-- **Admin Dashboard** — Login, call next patient, mark complete, clear completed, statistics
-- **Token Display Screen** — Large animated current token for waiting room TVs
-- **Dark Mode** — Theme toggle with persistence
-- **Toast Notifications** — Success/error feedback throughout the app
+## 🌐 Live Demo
 
-## Tech Stack
+**Application URL:**
+https://hospital-queue-managemen-93f2c.web.app/
 
-- React 19 (functional components + hooks)
-- JavaScript
-- Firebase Firestore
-- React Router
-- QRCode.react
-- Plain CSS (modular component styles)
+---
 
-## Project Structure
+## 📌 Project Overview
 
-```
+Traditional hospital queue systems often lead to long waiting times, overcrowding, and inefficient patient management. This project provides a digital solution that enables real-time queue monitoring, automated token generation, appointment tracking, and administrative control.
+
+The system improves hospital efficiency while enhancing the patient experience through transparency and reduced waiting time.
+
+---
+
+## 🎯 Objectives
+
+* Digitize patient registration and queue management.
+* Reduce patient waiting time.
+* Provide real-time queue tracking.
+* Prioritize emergency cases.
+* Improve hospital workflow efficiency.
+* Support community healthcare initiatives.
+
+---
+
+## ✨ Key Features
+
+### 🏥 Patient Registration
+
+* Simple registration form
+* Input validation
+* Automatic token generation
+* Appointment timestamp generation
+* QR Code generation for registered patients
+
+### 📋 Live Queue Monitoring
+
+* Real-time queue updates using Firestore
+* Current serving token display
+* Queue status tracking
+* Search and filter functionality
+* Emergency patient highlighting
+
+### 👨‍⚕️ Admin Dashboard
+
+* Secure admin login
+* Call next patient
+* Mark patient as completed
+* Clear completed records
+* Queue statistics dashboard
+
+### 📺 Token Display Screen
+
+* Large display suitable for waiting rooms
+* Real-time token updates
+* Full-screen monitoring mode
+
+### 🌙 User Experience
+
+* Dark Mode support
+* Responsive design
+* Toast notifications
+* Modern UI components
+* Mobile-friendly interface
+
+---
+
+## 🛠 Technology Stack
+
+| Technology         | Purpose              |
+| ------------------ | -------------------- |
+| React.js           | Frontend Development |
+| JavaScript         | Application Logic    |
+| Firebase Firestore | Cloud Database       |
+| Firebase Hosting   | Deployment           |
+| React Router       | Navigation           |
+| QRCode.react       | QR Generation        |
+| CSS                | Styling              |
+
+---
+
+## 📂 Project Structure
+
+```text
 src/
 ├── assets/
 ├── components/
@@ -44,7 +109,7 @@ src/
 │   ├── ThemeContext.js
 │   └── ToastContext.js
 ├── firebase/
-│   ├── firebaseConfig.js    ← Your existing credentials (do not commit secrets publicly)
+│   ├── firebaseConfig.js
 │   └── firestoreService.js
 ├── hooks/
 │   └── usePatients.js
@@ -64,83 +129,94 @@ src/
     └── validation.js
 ```
 
-## Firebase Setup
+---
 
-### 1. Firestore Database
+## 🔥 Firebase Configuration
 
-1. Open [Firebase Console](https://console.firebase.google.com/) → your project `hospital-queue-system-1b02e`
-2. Go to **Build → Firestore Database**
-3. Click **Create database** → Start in **test mode** (for development) or production mode with rules below
-4. Collection name used by the app: **`patients`**
+### Firestore Database
 
-### 2. Firestore Security Rules
+1. Open Firebase Console.
+2. Create a Firestore Database.
+3. Start in Test Mode (Development).
+4. Collection used:
 
-Deploy the included rules (development — open read/write):
-
-```bash
-firebase deploy --only firestore:rules
+```text
+patients
 ```
 
-For production, replace open rules with Firebase Authentication checks.
+---
 
-### 3. Firestore Index
+## 📊 Firestore Collection Schema
 
-The app queries patients ordered by `createdAt`. Firestore may prompt you to create a composite index when you first run the app — click the link in the browser console error to auto-create it.
+| Field                | Type      | Description               |
+| -------------------- | --------- | ------------------------- |
+| patientName          | string    | Patient Full Name         |
+| age                  | number    | Patient Age               |
+| gender               | string    | Male/Female/Other         |
+| mobile               | string    | Mobile Number             |
+| symptoms             | string    | Symptoms Description      |
+| priorityType         | string    | Normal/Emergency          |
+| token                | string    | Generated Token           |
+| status               | string    | waiting/serving/completed |
+| createdAt            | timestamp | Registration Time         |
+| appointmentTimestamp | string    | Appointment Date          |
 
-### 4. Collection Schema (`patients`)
+---
 
-| Field | Type | Description |
-|-------|------|-------------|
-| patientName | string | Full name |
-| age | number | Patient age |
-| gender | string | Male / Female / Other |
-| mobile | string | 10-digit number |
-| symptoms | string | Symptom description |
-| priorityType | string | `Normal` or `Emergency` |
-| token | string | e.g. `T-20260528-001` |
-| status | string | `waiting`, `serving`, `completed` |
-| createdAt | timestamp | Server timestamp |
-| appointmentTimestamp | string | ISO date string |
+## 🔐 Demo Login Credentials
 
-## Getting Started
+| Field    | Value    |
+| -------- | -------- |
+| Username | admin    |
+| Password | admin123 |
 
-### Install dependencies
+---
+
+## 🚀 Installation & Setup
+
+### Clone Repository
+
+```bash
+git clone <your-github-repository-url>
+cd hospital-queue-system
+```
+
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Run development server
+### Start Development Server
 
 ```bash
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Application runs at:
 
-### Admin Login (Demo)
+```text
+http://localhost:3000
+```
 
-| Field | Value |
-|-------|-------|
-| Username | `admin` |
-| Password | `admin123` |
+---
 
-## Deployment (Firebase Hosting)
+## 🚀 Deployment
 
-### 1. Install Firebase CLI
+### Install Firebase CLI
 
 ```bash
 npm install -g firebase-tools
 firebase login
 ```
 
-### 2. Build the React app
+### Build Project
 
 ```bash
 npm run build
 ```
 
-### 3. Deploy
+### Deploy Application
 
 ```bash
 firebase deploy
@@ -152,22 +228,106 @@ Or deploy hosting only:
 firebase deploy --only hosting
 ```
 
-Your app will be live at: `https://hospital-queue-system-1b02e.web.app`
+### Hosted URL
 
-## Screenshots & Demo Tips
+https://hospital-queue-managemen-93f2c.web.app/
 
-1. **Home** — Show SDG section and project overview for presentation
-2. **Register** — Register 2–3 patients (one Emergency) to demonstrate priority
-3. **Admin** — Call next patient, show statistics updating
-4. **Token Display** — Full-screen on a second monitor for "waiting room" effect
-5. **Live Queue** — Show real-time updates when admin calls patients
+---
 
-## SDG Alignment
+## 🧪 Demonstration Flow
 
-- **SDG 3** — Good Health and Well-Being
-- **SDG 9** — Industry, Innovation and Infrastructure
-- **SDG 16** — Peace, Justice and Strong Institutions
+### Step 1
 
-## License
+Open Home Page and explain:
 
-Educational / CSP Project Use
+* Project Overview
+* SDG Alignment
+* Community Impact
+
+### Step 2
+
+Register 2–3 patients:
+
+* Normal Patient
+* Emergency Patient
+
+### Step 3
+
+Show generated tokens and QR codes.
+
+### Step 4
+
+Open Live Queue Display and demonstrate:
+
+* Real-time updates
+* Search and filtering
+
+### Step 5
+
+Login as Admin and:
+
+* Call next patient
+* Mark completed
+* Show queue statistics
+
+### Step 6
+
+Open Token Display Screen on a second monitor or browser tab.
+
+---
+
+## 🌍 Sustainable Development Goals (SDGs)
+
+### SDG 3 – Good Health and Well-Being
+
+Improves healthcare service delivery and patient management.
+
+### SDG 9 – Industry, Innovation and Infrastructure
+
+Promotes digital transformation in healthcare systems.
+
+### SDG 16 – Peace, Justice and Strong Institutions
+
+Enhances transparency and accountability in hospital operations.
+
+---
+
+## 💡 Innovation & Community Impact
+
+* Reduces overcrowding in hospitals.
+* Improves patient satisfaction.
+* Enables transparent queue management.
+* Supports healthcare digitization initiatives.
+* Suitable for government hospitals, clinics, and community health centers.
+
+---
+
+## 📈 Future Enhancements
+
+* SMS notifications for patients.
+* Email appointment reminders.
+* Firebase Authentication for secure admin access.
+* Doctor-specific queues.
+* Multi-hospital support.
+* Patient history records.
+* AI-powered waiting time prediction.
+
+---
+
+## 👨‍💻 Developed For
+
+Community Service Project (CSP)
+
+Final Year Project Submission
+
+Department of Computer Science & Engineering
+
+Academic Year 2025–2026
+
+---
+
+## 📄 License
+
+This project is developed for educational and academic purposes.
+
+Free to use for CSP demonstrations, research, and learning.
