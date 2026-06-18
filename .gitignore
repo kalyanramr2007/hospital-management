@@ -24,3 +24,7 @@ yarn-error.log*
 .firebase
 .firebase/
 hospital-management/
+
+.env
+.env.local
+.env.production
